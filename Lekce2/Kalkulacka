@@ -1,0 +1,37 @@
+
+while True:
+# Získání čísel od uživatele
+  cislo1 = float(input("Zadejte první číslo: "))
+  cislo2 = float(input("Zadejte druhé číslo: "))
+
+# Získání operace od uživatele
+  operace = input("Zvolte operaci (+, -, *, /): ")
+
+  vysledek = None
+
+# Výpočet výsledku na základě zadané operace
+  if operace == "+":
+    vysledek = cislo1 + cislo2
+  elif operace == "-":
+    vysledek = cislo1 - cislo2
+  elif operace == "*":
+    vysledek = cislo1 * cislo2
+  elif operace == "/":
+    if cislo2 != 0:
+      vysledek = cislo1 / cislo2
+    else:
+      print("Dělení nulou není povoleno!")
+
+  else:
+    print("Neplatná operace!")
+
+
+  # Výpis výsledku
+  if operace in "+-*/":  # Kontrola platné operace
+    print(f"Výsledek {cislo1} {operace} {cislo2} = {vysledek}")
+
+  user_choice = input("Chceš pokračovat tak zadej -> y")
+  if user_choice != "y":
+    break
+
+print("Konec")

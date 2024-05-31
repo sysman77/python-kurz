@@ -1,0 +1,15 @@
+# Algoritmus cesty do kina
+
+1. Je dnes den, kdy je kino?
+2. Obleču se na cestu kina
+3. Vezmu lístky na film
+4. Vezmu klíče od domu
+5. Znám trasu
+6. Pojedu autem / půjdu pešky
+    - pešky, je to kousek
+7. Cesta do kina
+8. Jsem v kině
+9. Ukážu lístky
+10. Podle lístku sednu na správné místo
+11. Počkám na začátek filmu
+12. Film začal
