@@ -1,1 +1,1 @@
-Python kurz, každý čtvrtek od 17:15 - 21:20. Až do konce října
+Python kurz, každý čtvrtek od 17:50 - 21:20. Až do konce října
