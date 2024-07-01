@@ -1,0 +1,29 @@
+import datetime
+import time
+
+def get_current_time():
+  """
+  Vrátí aktuální čas ve formátu HH:MM.
+  """
+  now = datetime.datetime.now()
+  return now.strftime("%H:%M")
+
+def decorate_function(func):
+  """
+  Dekorační funkce pro vložení hvězdiček a formátování výstupu.
+  """
+  def wrapper():
+    print("***************************")
+    result = func()
+    formatted_result = f"[CZ] {result} - {time.strftime('%d.%m.%Y %H:%M:%S')}"
+    print(formatted_result)
+    print("***************************")
+    return result
+  return wrapper
+
+decorated_get_current_time = decorate_function(get_current_time)
+
+# Příklad použití
+
+current_time = decorated_get_current_time()
+print(f"Aktuální čas: {current_time}")
