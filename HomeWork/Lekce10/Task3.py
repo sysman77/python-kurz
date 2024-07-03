@@ -80,7 +80,7 @@ shapes = [
 ]
 
 # Uložení tvarů do souboru
-filename = "tvary.txt"
+filename = "HomeWork/Lekce10/tvary.txt"
 for shape in shapes:
     shape.save(filename)
 
