@@ -1,0 +1,16 @@
+[
+    {
+        "Název": "U dvou fotrů",
+        "Specializace": "česká",
+        "Adresa": "Stojanova 13",
+        "Web": "www.u2fotru.cz",
+        "Telefonní číslo": "518322874"
+    },
+    {
+        "Název": "Restaurace U dobrého jídla",
+        "Specializace": "italská",
+        "Adresa": "Náměstí Svobody 12, 110 00 Praha 1",
+        "Web": "http://www.udobrehojidla.cz",
+        "Telefonní číslo": "+420 123 456 789"
+    }
+]
