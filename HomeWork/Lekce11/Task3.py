@@ -1,105 +1,90 @@
-"""
-Vytvořte aplikaci slovníku. Nechte to být anglicko-španělský nebo francouzsko-německý slovník nebo jakýkoli jiný jazyk.
-Aplikace by měla provádět následující kroky:
--poskytnout počáteční vstup dat do slovníku,
--zobrazit slovo a jeho překlady,
--přidávat, nahrazovat, mazat překlad slov,
--přidat, nahradit, odstranit slovo,
--zobrazit 10 nejoblíbenějších slov (určit popularitu na základě čítače požadavků),
--zobrazit 10 nejméně populárních slov (určit popularitu na základě čítače požadavků).
-Potřebné datové struktury si můžete vybrat sami.
-
-"""
-
-class DictionaryApp:
+class Dictionary:
     def __init__(self):
-        self.dictionary = {}
+        self.data = {}
         self.popularity = {}
 
-    def initial_input(self):
-        initial_words = {
-            "apple": "jablko",
-            "banana": "banán",
-            "cat": "kočka",
-            "dog": "pes",
-            "elephant": "slon"
-        }
-        self.dictionary.update(initial_words)
-        for word in initial_words:
-            self.popularity[word] = 0
+    def add_word(self, word, translations):
+        if word in self.data:
+            print(f"Slovo '{word}' již existuje.")
+            return
 
-    def display_word(self, word):
-        if word in self.dictionary:
-            self.popularity[word] += 1
-            return f"{word} - {self.dictionary[word]}"
-        else:
-            return f"Slovo '{word}' nebylo nalezeno."
+        self.data[word] = translations
+        self.popularity[word] = 0
+        print(f"Slovo '{word}' bylo přidáno do slovníku.")
 
-    def add_or_replace_translation(self, word, translation):
-        if word in self.dictionary:
-            self.dictionary[word] = translation
-            return f"Překlad pro '{word}' byl nahrazen."
-        else:
-            self.dictionary[word] = translation
-            self.popularity[word] = 0
-            return f"Překlad pro '{word}' byl přidán."
-
-    def delete_translation(self, word):
-        if word in self.dictionary:
-            del self.dictionary[word]
+    def remove_word(self, word):
+        if word in self.data:
+            del self.data[word]
             del self.popularity[word]
-            return f"Překlad pro '{word}' byl smazán."
+            print(f"Slovo '{word}' bylo odstraněno ze slovníku.")
         else:
-            return f"Slovo '{word}' nebylo nalezeno."
+            print(f"Slovo '{word}' neexistuje ve slovníku.")
 
-    def display_top_words(self, top_n=10, least=False):
-        sorted_words = sorted(self.popularity.items(), key=lambda item: item[1], reverse=not least)
-        result = []
-        for word, count in sorted_words[:top_n]:
-            result.append(f"{word}: {count} požadavků")
-        return result
+    def update_word(self, word, translations):
+        if word in self.data:
+            self.data[word] = translations
+            print(f"Překlady slova '{word}' byly aktualizovány.")
+        else:
+            print(f"Slovo '{word}' neexistuje ve slovníku. Můžete ho přidat pomocí metody add_word.")
 
-    def menu(self):
-        while True:
-            print("\nSlovník - Menu")
-            print("1. Počáteční vstup dat do slovníku")
-            print("2. Zobrazit slovo a jeho překlady")
-            print("3. Přidat nebo nahradit překlad slov")
-            print("4. Smazat překlad slov")
-            print("5. Zobrazit 10 nejoblíbenějších slov")
-            print("6. Zobrazit 10 nejméně populárních slov")
-            print("7. Ukončit aplikaci")
-
-            choice = input("Vyberte možnost: ")
-
-            if choice == "1":
-                self.initial_input()
-                print("Počáteční data byla vložena.")
-            elif choice == "2":
-                word = input("Zadejte slovo k zobrazení: ")
-                print(self.display_word(word))
-            elif choice == "3":
-                word = input("Zadejte slovo: ")
-                translation = input("Zadejte překlad: ")
-                print(self.add_or_replace_translation(word, translation))
-            elif choice == "4":
-                word = input("Zadejte slovo k odstranění: ")
-                print(self.delete_translation(word))
-            elif choice == "5":
-                print("10 nejoblíbenějších slov:")
-                for item in self.display_top_words():
-                    print(item)
-            elif choice == "6":
-                print("10 nejméně populárních slov:")
-                for item in self.display_top_words(least=True):
-                    print(item)
-            elif choice == "7":
-                print("Ukončuji aplikaci.")
-                break
+    def add_translation(self, word, translation):
+        if word in self.data:
+            if translation not in self.data[word]:
+                self.data[word].append(translation)
+                print(f"Překlad '{translation}' byl přidán k slovu '{word}'.")
             else:
-                print("Neplatná volba, zkuste to znovu.")
+                print(f"Překlad '{translation}' již existuje pro slovo '{word}'.")
+        else:
+            print(f"Slovo '{word}' neexistuje ve slovníku. Můžete ho přidat pomocí metody add_word.")
+
+    def remove_translation(self, word, translation):
+        if word in self.data:
+            if translation in self.data[word]:
+                self.data[word].remove(translation)
+                print(f"Překlad '{translation}' byl odstraněn ze slova '{word}'.")
+            else:
+                print(f"Překlad '{translation}' neexistuje pro slovo '{word}'.")
+        else:
+            print(f"Slovo '{word}' neexistuje ve slovníku.")
+
+    def get_translations(self, word):
+        if word in self.data:
+            self.popularity[word] += 1
+            return self.data[word]
+        else:
+            return None
+
+    def get_most_popular_words(self, n=10):
+        sorted_words = sorted(self.popularity.items(), key=lambda x: x[1], reverse=True)
+        return [word[0] for word in sorted_words[:n]]
+
+    def get_least_popular_words(self, n=10):
+        sorted_words = sorted(self.popularity.items(), key=lambda x: x[1])
+        return [word[0] for word in sorted_words[:n]]
 
 
+# Ukázkové použití aplikace
 if __name__ == "__main__":
-    app = DictionaryApp()
-    app.menu()
+    dictionary = Dictionary()
+
+    # Přidání slov do slovníku
+    dictionary.add_word("hello", ["hola", "bonjour"])
+    dictionary.add_word("goodbye", ["adiós", "au revoir"])
+    dictionary.add_word("yes", ["sí", "oui"])
+    dictionary.add_word("no", ["no", "non"])
+
+    # Získání překladů slova
+    print(dictionary.get_translations("hello"))  # ['hola', 'bonjour']
+
+    # Přidání a odstranění překladů
+    dictionary.add_translation("hello", "hallo")
+    print(dictionary.get_translations("hello"))  # ['hola', 'bonjour', 'hallo']
+    dictionary.remove_translation("hello", "bonjour")
+    print(dictionary.get_translations("hello"))  # ['hola', 'hallo']
+
+    # Odstranění slova
+    dictionary.remove_word("yes")
+
+    # Zobrazení nejoblíbenějších a nejméně oblíbených slov
+    print("Nejoblíbenější slova:", dictionary.get_most_popular_words())
+    print("Nejméně oblíbená slova:", dictionary.get_least_popular_words())

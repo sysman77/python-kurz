@@ -1,0 +1,6 @@
+Pridajte do programu možnosť zapisať data do súboru.
+Možnost zapisat do suboru min-max hodnoty.
+Možnosť zapísať do suboru zoznam čisel.
+Vždy sa spytajte na nazov suboru uživateľa.
+
+Dodržte štruktúru-architektúru programu
