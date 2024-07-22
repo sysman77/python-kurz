@@ -1,0 +1,189 @@
+https://materials.itstep.org/content/0db2bdc0-3c94-4da5-8e8a-fa42530d57a6/en/?cache=0
+
+v úkole použite skladanie stránok, extends a include
+pridajte aj možnosť nakliknuť detail restaurace zo zoznamu restauraci (repozitar z minulého týdne jako hint)
+
+
+Task 6,7,8 -> Bonusove
+
+##### Model #####
+import json
+
+# Model restaurace
+restaurant = {
+    "Název": "Restaurace U dobrého jídla",
+    "Specializace": "italská",
+    "Adresa": "Náměstí Svobody 12, 110 00 Praha 1",
+    "Web": "http://www.udobrehojidla.cz",
+    "Telefonní číslo": "+420 123 456 789"
+}
+
+# Konverze modelu na JSON
+restaurant_json = json.dumps(restaurant, ensure_ascii=False, indent=4)
+
+# Zápis JSON do souboru
+with open("restaurant.json", "w", encoding="utf-8") as file:
+    file.write(restaurant_json)
+
+print("JSON model restaurace byl úspěšně vytvořen a uložen do souboru 'restaurant.json'.")
+#################################################################################################
+
+
+
+
+
+restaurant_app/
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── add.html
+│   ├── delete.html
+│
+├── app.py
+└── restaurants.json
+
+###☼ app.py ###
+from flask import Flask, render_template, request, redirect, url_for
+import json
+import os
+
+app = Flask(__name__)
+
+# Načtení dat ze souboru
+def load_data():
+    if not os.path.exists('restaurants.json'):
+        return []
+    with open('restaurants.json', 'r', encoding='utf-8') as file:
+        return json.load(file)
+
+# Uložení dat do souboru
+def save_data(data):
+    with open('restaurants.json', 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+@app.route('/')
+def index():
+    restaurants = load_data()
+    return render_template('index.html', restaurants=restaurants)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if request.method == 'POST':
+        new_restaurant = {
+            "Název": request.form['name'],
+            "Specializace": request.form['specialization'],
+            "Adresa": request.form['address'],
+            "Web": request.form['web'],
+            "Telefonní číslo": request.form['phone']
+        }
+        data = load_data()
+        data.append(new_restaurant)
+        save_data(data)
+        return redirect(url_for('index'))
+    return render_template('add.html')
+
+@app.route('/delete/<int:index>', methods=['GET', 'POST'])
+def delete(index):
+    data = load_data()
+    if request.method == 'POST':
+        data.pop(index)
+        save_data(data)
+        return redirect(url_for('index'))
+    restaurant = data[index]
+    return render_template('delete.html', restaurant=restaurant, index=index)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+### templates/base.html ####
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant App</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('add') }}">Add Restaurant</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
+
+
+### templates/index.html ###
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Restaurant List</h1>
+<ul>
+    {% for restaurant in restaurants %}
+    <li>
+        {{ restaurant['Název'] }} - {{ restaurant['Specializace'] }}
+        <a href="{{ url_for('delete', index=loop.index0) }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+### templates/add.html ###
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Restaurant</h1>
+<form action="{{ url_for('add') }}" method="post">
+    <label for="name">Název:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="specialization">Specializace:</label>
+    <input type="text" id="specialization" name="specialization" required><br>
+
+    <label for="address">Adresa:</label>
+    <input type="text" id="address" name="address" required><br>
+
+    <label for="web">Web:</label>
+    <input type="text" id="web" name="web"><br>
+
+    <label for="phone">Telefonní číslo:</label>
+    <input type="text" id="phone" name="phone"><br>
+
+    <button type="submit">Add Restaurant</button>
+</form>
+{% endblock %}
+
+
+
+### templates/delete.html ###
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Delete Restaurant</h1>
+<p>Are you sure you want to delete the restaurant "{{ restaurant['Název'] }}"?</p>
+<form action="{{ url_for('delete', index=index) }}" method="post">
+    <button type="submit">Yes, delete</button>
+    <a href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

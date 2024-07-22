@@ -9,7 +9,13 @@ class BotyView:
             print(boty)
 
     @staticmethod
-    def zobrazit_boty_podle_znacky(boty_list, znacka):
-        print(f'Boty od značky {znacka}:')
-        for boty in boty_list:
+    def zobrazit_kosik(kosik_list):
+        if not kosik_list:
+            print("Košík je prázdný.")
+        for boty in kosik_list:
             print(boty)
+        print(f'Celková cena: {sum(boty.cena for boty in kosik_list)} Kč')
+
+    @staticmethod
+    def zobrazit_zpravu(zprava):
+        print(zprava)

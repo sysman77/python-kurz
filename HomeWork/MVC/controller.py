@@ -1,7 +1,9 @@
 from model import *
+
 class BotyController:
     def __init__(self):
         self.boty_list = []
+        self.kosik = Kosik()
 
     def pridat_boty(self, druh, typ, barva, cena, znacka, velikost):
         nove_boty = Boty(druh, typ, barva, cena, znacka, velikost)
@@ -11,5 +13,15 @@ class BotyController:
     def zobrazit_vsechny_boty(self):
         return self.boty_list
 
-    def najit_boty_podle_znacky(self, znacka):
-        return [boty for boty in self.boty_list if boty.znacka == znacka]
+    def pridat_do_kosiku(self, boty):
+        self.kosik.pridat_do_kosiku(boty)
+
+    def odstran_z_kosiku(self, boty):
+        self.kosik.odstranit_z_kosiku(boty)
+
+    def zobrazit_kosik(self):
+        return self.kosik.zobrazit_kosik()
+
+    def zaplatit(self, metoda):
+        pokladna = Pokladna(self.kosik)
+        return pokladna.zaplatit(metoda)
