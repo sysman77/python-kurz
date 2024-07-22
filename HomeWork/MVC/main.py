@@ -1,5 +1,7 @@
 from controller import *
 from view import *
+
+
 def run():
     controller = BotyController()
     view = BotyView()
@@ -48,7 +50,7 @@ def run():
             kosik = controller.zobrazit_kosik()
             if 0 <= index < len(kosik):
                 boty = kosik[index]
-                controller.odstranit_z_kosiku(boty)
+                controller.odstran_z_kosiku(boty)
                 view.zobrazit_zpravu(f'Boty {boty.znacka} odstraněny z košíku.')
             else:
                 view.zobrazit_zpravu('Neplatný index.')

@@ -11,6 +11,7 @@ class Boty:
     def __str__(self):
         return f'{self.znacka} {self.typ} ({self.barva}) - {self.druh}, Velikost: {self.velikost}, Cena: {self.cena} Kč'
 
+
 # Model pro košík
 class Kosik:
     def __init__(self):
@@ -28,6 +29,10 @@ class Kosik:
     def zobrazit_kosik(self):
         return self.items
 
+    def vymazat_kosik(self):
+        self.items.clear()
+
+
 # Model pro pokladnu
 class Pokladna:
     def __init__(self, kosik):
@@ -36,8 +41,12 @@ class Pokladna:
     def zaplatit(self, metoda):
         celkova_cena = self.kosik.celkovy_cena()
         if metoda == 'hotově':
-            return f'Úspěšně zaplaceno {celkova_cena} Kč hotově.'
+            self.kosik.vymazat_kosik() # Vymazání košíku po platbě
+            return f'Úspěšně zaplaceno {celkova_cena} Kč hotově. Košík je prázdný'
         elif metoda == 'kartou':
-            return f'Úspěšně zaplaceno {celkova_cena} Kč kartou.'
+            self.kosik.vymazat_kosik() # Vymazání košíku po platbě
+            return f'Úspěšně zaplaceno {celkova_cena} Kč kartou. Košík je prázdný'
         else:
             return 'Neplatná metoda platby.'
+
+
