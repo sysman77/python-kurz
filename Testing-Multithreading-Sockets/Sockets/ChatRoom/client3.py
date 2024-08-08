@@ -26,12 +26,14 @@ def main():
 
     print("Pripojený k serveru. Môžete začať chatovať.")
 
+    name = input("Zadaj tvoje chatove meno: ")
+
     receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
     receive_thread.start()
 
     while True:
         message = input()
-        client_socket.send(message.encode('utf-8'))
+        client_socket.send(f"{name}: {message}".encode('utf-8'))
 
 
 if __name__ == "__main__":
