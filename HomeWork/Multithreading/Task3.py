@@ -28,16 +28,16 @@ def copy_directory_structure(src, dest):
             total_files += 1
             total_size += os.path.getsize(src_file)
 
-    print(f"Copy operation completed. Total files copied: {total_files}, Total size: {total_size / 1024:.2f} KB")
+    print(f"Operace kopírování dokončena. Celkem zkopírováno souborů: {total_files}, O celkové velikosti: {total_size / 1024:.2f} KB")
 
 
 # Získání cesty od uživatele
-src_dir = input("Enter the path of the source directory: ")
-dest_dir = input("Enter the path of the destination directory: ")
+src_dir = input("Zadej cestu ke zdrojovému adresáři: ")
+dest_dir = input("Zadej cestu ke cílovému adresáři: ")
 
 # Kontrola existence zadaných adresářů
 if not os.path.exists(src_dir):
-    print(f"Source directory '{src_dir}' does not exist.")
+    print(f"Zdrojový adresář '{src_dir}' neexistuje.")
 else:
     # Spuštění kopírovacího vlákna
     copy_thread = threading.Thread(target=copy_directory_structure, args=(src_dir, dest_dir))
