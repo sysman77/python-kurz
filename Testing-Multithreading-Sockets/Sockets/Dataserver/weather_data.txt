@@ -1,0 +1,7 @@
+Country,City,Weather
+USA,New York,Sunny
+USA,Los Angeles,Cloudy
+UK,London,Rainy
+France,Paris,Sunny
+Japan,Tokyo,Snowy
+Czech,Bzenec,slunecno
