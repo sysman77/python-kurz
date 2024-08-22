@@ -1,0 +1,23 @@
+# Task1
+# Ziskajte všechny spravy a jmena jejich autoru z db
+
+
+# Task2
+# Ziskejte seznam všech mistnosti a poslednich 5 sprav z nich
+
+
+
+# Task3
+# Ziskejte vŠechny spravy za poslednich 24 hodin a jmena jejich autorov
+
+
+# Task 4
+# ziskejte zoznam použivatelov a poČet sprav ktere kazdy napsal
+
+
+# Task 5
+# ziskejte zoznam mistnosti a pocet sprav v každej z nich
+
+
+# Task 6
+# ziskajte zoznam pouzivatelov a ich celkovy pocet prispevkov v jednotlivych miestnostiach
