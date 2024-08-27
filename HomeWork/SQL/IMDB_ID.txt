@@ -1,0 +1,22 @@
+Jak zjistit IMDb ID:
+Otevřete webovou stránku IMDb:
+
+Přejděte na IMDb.com.
+Vyhledejte požadovaný film nebo osobnost:
+
+V horním vyhledávacím poli zadejte název filmu, herce nebo režiséra.
+Najděte IMDb ID v URL adrese:
+
+Jakmile se dostanete na stránku filmu nebo osobnosti, IMDb ID najdete v URL adrese.
+IMDb ID má formát ttXXXXXXX pro filmy a seriály nebo nmXXXXXXX pro osoby.
+Příklad:
+
+Pro film Inception je URL: https://www.imdb.com/title/tt1375666/.
+IMDb ID tohoto filmu je tedy tt1375666.
+Použijte IMDb ID v aplikaci:
+
+Toto IMDb ID můžete zadat do své aplikace, kde bude použito pro načtení informací o filmu.
+Praktický příklad:
+Pokud chcete přidat film Inception pomocí IMDb ID do vaší aplikace, zadáte tt1375666 jako IMDb ID, což způsobí, že
+aplikace automaticky načte a uloží informace o tomto filmu z IMDb do vaší databáze.
+Tímto způsobem můžete rychle a přesně přidávat filmy do své databáze, aniž byste museli ručně zadávat všechny informace.
