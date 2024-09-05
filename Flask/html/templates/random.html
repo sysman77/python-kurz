@@ -5,17 +5,15 @@
 </head>
 <body>
 <header>
-    <a href="">Home</a>
+    <a href="{{ url_for('home') }}">Home</a>
     <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('random') }}">Random</a>
+    <a href="">Random</a>
     <a href="https://www.w3schools.com/html/">W3 schools HTML</a>
-    <a href="">Home</a>
-
-
 </header>
 
-<h1>Home Page</h1>
+<h1>Random Page</h1>
 <p>This is a paragraph.</p>
+<p>Random: {{ data }}</p>
 
 </body>
 </html>
