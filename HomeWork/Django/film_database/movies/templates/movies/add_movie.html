@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Přidat nový film</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+    <h1>Přidat nový film</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Přidat film</button>
+    </form>
+    <a href="{% url 'movie_list' %}">Zpět na seznam filmů</a>
+</body>
+</html>

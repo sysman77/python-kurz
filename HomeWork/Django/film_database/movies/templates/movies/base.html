@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Moje filmy{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'movie_list' %}">Seznam filmů</a> |
+        <a href="{% url 'add_movie' %}">Přidat nový film</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

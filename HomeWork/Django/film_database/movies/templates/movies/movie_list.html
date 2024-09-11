@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam filmů</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+    <h1>Seznam filmů</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_movie' %}">Přidat nový film</a>
+</body>
+</html>

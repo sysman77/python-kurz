@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+    <h1>{{ movie.title }}</h1>
+    <p>Režisér: {{ movie.director }}</p>
+    <p>Datum vydání: {{ movie.release_date }}</p>
+    <p>Popis: {{ movie.description }}</p>
+    <a href="{% url 'movie_list' %}">Zpět na seznam filmů</a>
+</body>
+</html>
