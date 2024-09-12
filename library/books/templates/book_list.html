@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block content %}
+<h1>Book List</h1>
+    <a href="{% url 'book_create' %}">Add New Book</a>
+    <ul>
+        {% for book in object_list %}
+            <li>
+                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> by {{ book.author }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
