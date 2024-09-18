@@ -1,0 +1,6 @@
+<h1>Seznam filmů</h1>
+<ul>
+    {% for film in filmy %}
+        <li><a href="{% url 'film_detail' film.id %}">{{ film.nazev }}</a></li>
+    {% endfor %}
+</ul>
